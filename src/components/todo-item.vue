@@ -16,7 +16,10 @@
     >
       Complete
     </v-btn>
-    <v-btn color="error">
+    <v-btn 
+      color="error"
+      @click="deleteTodo"        
+    >
       Delete
     </v-btn>
   </v-card>
@@ -33,7 +36,10 @@ export default {
   methods: {
     update() {
       this.$store.commit("update", {id: this.todo.id, status: 'done'});
-    }
+    },
+    deleteTodo() {
+      this.$store.commit("delete", this.todo.id);
+    },
   }
 };
 </script>
