@@ -4,12 +4,16 @@
       <div>
         <h3 
           class="headline mb-0"
+          :class="{'done' : todo.status === 'done'}" 
         >
           {{ todo.title }}
         </h3>
       </div>
     </v-card-title>
-    <v-btn>
+    <v-btn
+      :disabled="todo.status === 'done'" 
+      @click="update"
+    >
       Complete
     </v-btn>
     <v-btn color="error">
@@ -25,9 +29,18 @@ export default {
       required: true,
       type: Object
     }
+  },
+  methods: {
+    update() {
+      this.$store.commit("update", {id: this.todo.id, status: 'done'});
+    }
   }
 };
 </script>
 
 <style lang="css">
+.done {
+  text-decoration: line-through;
+}
+
 </style>

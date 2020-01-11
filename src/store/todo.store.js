@@ -21,6 +21,11 @@ export default new Vuex.Store({
                 status: "open"
                 })
             }
+        },      
+        update(state, updateTodo) {
+            const index = state.todos.findIndex(todo => todo.id === updateTodo.id );
+            if(updateTodo.status)state.todos[index].status = updateTodo.status;
+            if(updateTodo.title)state.todos[index].title = updateTodo.title;
         }
     },
 })
