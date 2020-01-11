@@ -10,5 +10,17 @@ export default new Vuex.Store({
             title:'welcome',
             status: 'open'
         }],
-    }
+    },
+    mutations:{
+        create(state, title) {
+            title = title.trim();
+            if(title){
+                state.todos.push({
+                id: state.todos.length + 1,
+                title: title,
+                status: "open"
+                })
+            }
+        }
+    },
 })
