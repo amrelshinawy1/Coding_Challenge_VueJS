@@ -25,23 +25,19 @@
   </v-card>
 </template>
 
-<script>
-export default {
-  props: {
-    todo: {
-      required: true,
-      type: Object
-    }
-  },
-  methods: {
-    update() {
-      this.$store.commit("update", {id: this.todo.id, status: 'done'});
-    },
-    deleteTodo() {
-      this.$store.commit("delete", this.todo.id);
-    },
+<script lang="ts">
+import { Component, Prop, Vue } from "vue-property-decorator";
+import ITodo from '@/interfaces/todo';
+@Component
+export default class TodoItem extends Vue {
+  @Prop() private todo: ITodo = {id: 0, title: '', status:'open'};
+  update(): void {
+    this.$store.commit("update", {id: this.todo.id, status: 'done'});
   }
-};
+  deleteTodo(): void {
+    this.$store.commit("delete", this.todo.id);
+  }
+}
 </script>
 
 <style lang="css">
